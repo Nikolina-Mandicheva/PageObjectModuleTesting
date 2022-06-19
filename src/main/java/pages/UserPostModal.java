@@ -36,7 +36,11 @@ public class UserPostModal {
     @FindBy(xpath = "//form[contains(@class,'comment-form ng-pristine')]")
     WebElement sendComment;
 
+    @FindBy(xpath = "//div[@role='alertdialog']")
+    WebElement likePostSuccessAlert;
+
     public void commentPost(){
+       //How to make the Enter click - ?
         postModalCommentHereField.clear();
         postModalCommentHereField.sendKeys("1002");
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
@@ -51,6 +55,12 @@ public class UserPostModal {
     }
 
     public boolean likesVerification(){
+        return(likedPostButton.isDisplayed());
+
+    }
+
+    public boolean likesVerification1(){
+        wait.until(ExpectedConditions.invisibilityOf(likePostSuccessAlert));
         return(likedPostButton.isDisplayed());
 
     }
