@@ -60,10 +60,10 @@ public class BaseTests {
         usersPage.getAllUsersPosts();
         Assert.assertTrue(usersPage.usernameDisplayed());
         Assert.assertNotNull(usersPage.getUsersPostsCount());
-        //Validate that users posts are displayed
+        //Validate that users posts are displayed - cannot correctly get.is displayed for all items from the list
     }
 
-    @Test
+    @Test //How to make the Enter click - ?
     public void commentPost(){
         driver.get("http://training.skillo-bg.com/users/2399");
         usersPage.getAllUsersPosts();
@@ -72,16 +72,23 @@ public class BaseTests {
 
     }
 
-    @Test
+    @Test //assertion failure
     public void likePost() throws InterruptedException {
         driver.get("http://training.skillo-bg.com/users/2399");
         usersPage.getAllUsersPosts();
         usersPage.selectUserPost();
         userPostModal.likePost();
-        Assert.assertTrue(userPostModal.likesVerification());
-        userPostModal.likePost();
+        Assert.assertTrue(userPostModal.likesVerification1());
+        //Assert.assertTrue(userPostModal.likesVerification());
+        //userPostModal.likePost();
         Thread.sleep(5000);
 
+    }
+
+    @Test
+    public void followUser(){
+        homePage.clickFollowUser();
+        Assert.assertTrue(homePage.followedUserVerification());
     }
 
 //    @Test

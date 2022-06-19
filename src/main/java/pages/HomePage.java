@@ -26,6 +26,11 @@ public class HomePage {
     @FindBy(id = "nav-link-profile")
     WebElement profileButton;
 
+    @FindBy(xpath = "//button[text()='Follow']")
+    WebElement followButton;
+    @FindBy(xpath = "//button[text()='Unfollow']")
+    WebElement unfollowButton;
+
     //Interaction methods
     public void clickProfileButton(){
         profileButton.click();
@@ -43,6 +48,14 @@ public class HomePage {
     public boolean isLogoutButtonDisplayed(){
 
         return logoutButton.isDisplayed();
+    }
+
+    public void clickFollowUser(){
+        followButton.click();
+    }
+
+    public boolean followedUserVerification(){
+        return(unfollowButton.isDisplayed());
     }
 
 }

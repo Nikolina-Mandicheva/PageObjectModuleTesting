@@ -25,8 +25,15 @@ public class DefaultPage {
     @FindBy(id="nav-link-login")
     WebElement loginButton;
 
+    @FindBy(xpath = "//a[text()='Register']")
+    WebElement registerLink;
+
     //Methods
  public void clickLoginButton(){
      loginButton.click();
+ }
+
+ public void clickRegisterLink(){
+     registerLink.click();
  }
 }
