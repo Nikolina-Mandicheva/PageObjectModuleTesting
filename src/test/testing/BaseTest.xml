@@ -1,0 +1,12 @@
+<suite name="Suite1" verbose="1" parallel="classes">
+
+
+<test name="SmokeTests1">
+
+    <classes>
+        <class name="pomScripts.BaseTests" />
+
+
+    </classes>
+</test>
+        </suite>
