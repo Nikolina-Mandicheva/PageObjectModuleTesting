@@ -1,4 +1,5 @@
 package pages;
+import com.fasterxml.jackson.databind.ser.Serializers;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -7,12 +8,11 @@ import org.openqa.selenium.support.PageFactory;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class RegisterPage {
-WebDriver driver;
+public class RegisterPage extends BasePage {
 
-    public RegisterPage(WebDriver driver) {
-        this.driver = driver;
-        PageFactory.initElements(driver,this);
+
+    public RegisterPage (WebDriver driver) {
+        super(driver);
     }
 
     @FindBy(xpath = "//input[@formcontrolname='username']")

@@ -10,12 +10,12 @@ import org.openqa.selenium.support.PageFactory;
  *
  */
 //page factory  model implemented
-public class HomePage {
-    WebDriver driver;
+public class HomePage extends BasePage{
+
 
     public HomePage(WebDriver driver) {
-        this.driver = driver;
-        PageFactory.initElements(driver, this);
+       super(driver);
+
     }
 
     // Locators using PageFactory
@@ -30,6 +30,9 @@ public class HomePage {
     WebElement followButton;
     @FindBy(xpath = "//button[text()='Unfollow']")
     WebElement unfollowButton;
+
+    @FindBy(id = "nav-link-home")
+    WebElement homeButton;
 
     //Interaction methods
     public void clickProfileButton(){
@@ -57,5 +60,14 @@ public class HomePage {
     public boolean followedUserVerification(){
         return(unfollowButton.isDisplayed());
     }
+
+    public void clickHomeButton(){
+        homeButton.click();
+    }
+    public void clickLogoutButton(){
+        logoutButton.click();
+    }
+
+
 
 }

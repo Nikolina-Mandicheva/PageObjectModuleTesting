@@ -11,13 +11,13 @@ import org.openqa.selenium.support.PageFactory;
  * Defaultpage=> Home page => New Post page
  */
 
-public class DefaultPage {
-    WebDriver driver;
+public class DefaultPage extends BasePage{
 
-    //constructor
+
+
     public DefaultPage(WebDriver driver) {
-        this.driver = driver;
-        PageFactory.initElements(driver,this);
+        super(driver);
+
     }
 
     //locators

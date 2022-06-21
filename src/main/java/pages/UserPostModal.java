@@ -1,10 +1,10 @@
 package pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -12,13 +12,11 @@ import org.testng.Assert;
 import java.time.Duration;
 
 
-public class UserPostModal {
-    WebDriver driver;
+public class UserPostModal extends BasePage {
     WebDriverWait wait;
 
     public UserPostModal(WebDriver driver) {
-        this.driver = driver;
-        PageFactory.initElements(driver,this);
+        super(driver);
     }
 
     @FindBy(xpath = "//app-post-modal//input[@placeholder='Comment here']")
@@ -39,29 +37,36 @@ public class UserPostModal {
     @FindBy(xpath = "//div[@role='alertdialog']")
     WebElement likePostSuccessAlert;
 
-    public void commentPost(){
-       //How to make the Enter click - ?
+    public boolean commentPost(String comment) {
+        boolean isCommentDisplayed=false;
         postModalCommentHereField.clear();
-        postModalCommentHereField.sendKeys("1002");
-        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.textToBePresentInElement(postModalCommentHereField,"1002"));
-       postModalCommentHereField.sendKeys(Keys.ENTER);
-       // sendComment.sendKeys(Keys.ENTER);
-    }
-
-    public void likePost(){
-    likePostButton.click();
-
-    }
-
-    public boolean likesVerification(){
-        return(likedPostButton.isDisplayed());
+        postModalCommentHereField.sendKeys(comment);
+        postModalCommentHereField.sendKeys(Keys.ENTER);
+        WebElement publishedComment = driver.findElement(By.xpath("//div[@class='comment-list-container']//div[text()='Niki12100 Test']"));
+        String commentWebElementText=publishedComment.getText();
+        if  (commentWebElementText== comment){
+             isCommentDisplayed=true;
+        }
+        else { isCommentDisplayed=false;}
+        return isCommentDisplayed;
 
     }
 
-    public boolean likesVerification1(){
+
+    public void likePost() {
+        likePostButton.click();
+
+
+    }
+
+    public boolean likesVerification() { //is present?
+        return (likedPostButton.isDisplayed());
+
+    }
+
+    public boolean likesVerification1() {
         wait.until(ExpectedConditions.invisibilityOf(likePostSuccessAlert));
-        return(likedPostButton.isDisplayed());
+        return (likedPostButton.isDisplayed());
 
     }
 }

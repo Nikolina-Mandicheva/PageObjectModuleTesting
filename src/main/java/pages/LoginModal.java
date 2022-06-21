@@ -6,12 +6,11 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class LoginModal {
-    WebDriver driver;
+public class LoginModal extends BasePage {
+
 
     public LoginModal(WebDriver driver) {
-        this.driver = driver;
-        PageFactory.initElements(driver, this);
+        super(driver);
     }
 
 //    By usernameField=By.id("defaultLoginFormUsername");
@@ -39,6 +38,11 @@ public class LoginModal {
 
     public void clickSingIn() {
         signInButton.click();
-
     }
+
+//    public void commonLoginMethod(){
+//        enterUsername();enterPassword();
+//      clickSingIn();
+//
+//    }
 }

@@ -4,7 +4,7 @@
 <test name="SmokeTests1">
 
     <classes>
-        <class name="pomScripts.BaseTests" />
+        <class name="pomScripts.SmokeTests" />
 
 
     </classes>

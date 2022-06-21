@@ -14,41 +14,18 @@ import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.util.Date;
 
-public class RegisterSkilloUser {
-    WebDriver driver;
-    DefaultPage defaultPage;
-    RegisterPage registerPage;
-    HomePage homePage;
+public class RegisterSkilloUser extends BaseTests{
 
-    @BeforeTest
-    public void setUp() {
-        WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        defaultPage= new DefaultPage(driver);
-        registerPage=new RegisterPage(driver);
-        homePage=new HomePage(driver);
-
-    }
 
     @Test
     public void registerUser() throws InterruptedException {
         driver.get("http://training.skillo-bg.com/users/login");
         defaultPage.clickRegisterLink();
-        registerPage.registerUser("Nikki","email","nikidm-testing-user");
-       // Assert.assertEquals(driver.getCurrentUrl(),"http://training.skillo-bg.com/posts/all");
+        registerPage.registerUser("Nikki", "email", "nikidm-testing-user");
+        // Assert.assertEquals(driver.getCurrentUrl(),"http://training.skillo-bg.com/posts/all");
         Assert.assertTrue(homePage.isLogoutButtonDisplayed());
 
-
-
-
-
     }
 
-    @AfterTest
-    public void tearDown() {
-        driver.quit();
-
-    }
 
 }
